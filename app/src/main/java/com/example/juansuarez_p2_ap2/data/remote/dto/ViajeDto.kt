@@ -4,10 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "Viaje")
-data class ViajeDto (
+data class ViajeDto(
     @PrimaryKey
     val idViaje: Int? = 0,
-    val fecha: String? = null,
+    val fecha: Int = null,
     val millas: Int? = null,
     val tasaDolar: Int? = null,
     val observaciones: String = "",
