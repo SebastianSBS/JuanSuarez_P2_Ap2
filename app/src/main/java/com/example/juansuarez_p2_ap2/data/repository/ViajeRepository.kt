@@ -29,13 +29,13 @@ class ViajeRepository @Inject constructor(
         }
     }
 
-    fun getViajeById(viajeId: Int): Flow<Resource<ViajeDto>> = flow {
+    fun getViajesById(viajeId: Int): Flow<Resource<ViajeDto>> = flow {
         try {
             emit(Resource.Loading())
 
-            val response = viajeApi.getViajesById(viajeId)
+            val viajes = viajeApi.getViajesById(viajeId)
 
-            emit(Resource.Success(response.body()!!))
+            emit(Resource.Success(viajes))
 
         } catch (e: retrofit2.HttpException) {
             emit(Resource.Error(e.message ?: "Error al conectarse con la API"))
