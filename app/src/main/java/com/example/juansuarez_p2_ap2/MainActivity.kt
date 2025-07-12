@@ -12,22 +12,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.example.juansuarez_p2_ap2.presentation.navigation.ViajeNavHost
+import com.example.juansuarez_p2_ap2.presentation.navigation.ContributorNavHost
 import com.example.juansuarez_p2_ap2.ui.theme.JuanSuarez_P2_Ap2Theme
 import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : ComponentActivity() {
 
-    @AndroidEntryPoint
-    class MainActivity : ComponentActivity() {
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            enableEdgeToEdge()
-            setContent {
-                ViajeTheme {
-                    val navHost = rememberNavController()
-                    ViajeNavHost (navHost)
-                }
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            JuanSuarez_P2_Ap2Theme  {
+                val navHost = rememberNavController()
+                ContributorNavHost (navHost)
             }
         }
     }
+}

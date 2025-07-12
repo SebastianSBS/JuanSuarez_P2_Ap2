@@ -1,24 +1,21 @@
 package com.example.juansuarez_p2_ap2.di
 
-import com.example.juansuarez_p2_ap2.data.remote.ViajeApi
+import com.example.juansuarez_p2_ap2.data.remote.ContributorsApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
-@Module
+@dagger.hilt.InstallIn(dagger.hilt.components.SingletonComponent::class)
+@dagger.Module
 object ApiModule {
 
-    const val BASE_URL = "https://sagapi-dev.azurewebsites.net/"
+    const val BASE_URL = "https://api.github.com/"
 
-    @Provides
-    @Singleton
+    @dagger.Provides
+    @javax.inject.Singleton
     fun provideMoshi(): Moshi =
         Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
@@ -26,11 +23,12 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideViajeApi(moshi: Moshi): ViajeApi {
+    fun provideContributorsApi(moshi: Moshi): ContributorsApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-            .create(ViajeApi::class.java)
+            .create(ContributorsApi::class.java)
     }
+
 }
